@@ -1,0 +1,58 @@
+import { useState } from 'react';
+
+
+// catching addTutorials function from Home.js
+const AddTutorial = ({ addTutorial }) => {
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  // setting the submitting function
+  const handleSubmit = (e) => {
+    // preventing the page refres
+    e.preventDefault();
+    // defining the data to be used
+    addTutorial({ title: title, description: desc });
+    // deleting the text from the form after submitting
+    setTitle('');
+    setDesc('');
+  };
+
+  return (
+    <div className="container text-center mt-4">
+      <h1 className="display-6 text-dark">Front End Tutorials List</h1>
+      {/* using handleSubmit function with form submit */}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3 text-start">
+          <label htmlFor="title" className="form-label">
+            Tutorial Title
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            placeholder="Enter your title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3 text-start">
+          <label htmlFor="desc" className="form-label">
+            Tutorial Link
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="desc"
+            placeholder="Enter your Description"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+            required
+          />
+        </div>
+        <button className="btn btn-success w-100 mb-4">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default AddTutorial;
